@@ -6,7 +6,7 @@ import config
 
 list_hello = ("Привет", "Здравствуй", "Hello","ghbdtn","Ghbdtn")
 #
-bot = telebot.TeleBot("1699323950:AAFopeVh6w2ZfChvT3zGIMEayPlwDkRI5Ac", parse_mode=None)
+bot = telebot.TeleBot("", parse_mode=None)
 #
 conn = lite.connect('mybase.db', check_same_thread=False)
 c = conn.cursor()
@@ -23,7 +23,7 @@ keyboard = telebot.types.ReplyKeyboardMarkup(True)
 keyboard.row('Add news category', 'Add news keyword')
 keyboard.row('Show my categories', 'Show my keywords')
 keyboard.row('Remove category', 'Remove keyword')
-api = NewsApiClient(api_key='142b15f0c4db48b988ad41ae64edba99')
+api = NewsApiClient(api_key='')
 """#@bot.message_handler(commands=['start', 'help'])
 #def handle_start_help(message):
 #    bot.reply_to(message, "Желаешь получить новости?")
@@ -98,7 +98,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['show_news'])
 def get_news(message):
     bot.reply_to(message, "Новости : \n")
-    newsapi = NewsApiClient(api_key='142b15f0c4db48b988ad41ae64edba99')
+    newsapi = NewsApiClient(api_key='')
     user_cats: List[Any] = c.execute(
         f"SELECT cat_name FROM categories WHERE user_id = {message.from_user.id}").fetchall()
     user_keyw: List[Any] = c.execute(
